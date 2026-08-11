@@ -1,18 +1,24 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
-/** Classic HPLC chromatogram matching the reference: Target + Non-target peaks, AU vs Time. */
+/** Peak apex X positions — keep labels/arrows locked to these. */
+const TARGET_X = 136
+const NON_TARGET_A_X = 266
+const NON_TARGET_B_X = 310
+const NON_TARGET_LABEL_X = (NON_TARGET_A_X + NON_TARGET_B_X) / 2
+
+/** Classic HPLC chromatogram: Target + Non-target peaks, AU vs Time. */
 export default function AnimatedChromatogram({
   className = '',
   title = 'HPLC chromatogram',
   showLabels = true,
+  showTitle = false,
   animate = true,
 }) {
   const reduceMotion = useReducedMotion()
   const pathRef = useRef(null)
   const [length, setLength] = useState(0)
   const [drawn, setDrawn] = useState(!animate || !!reduceMotion)
-  const uid = useId().replace(/:/g, '')
 
   // Sharp chromatographic profile: baseline → Target → noise → two Non-target peaks → hump
   const linePath =
@@ -36,7 +42,7 @@ export default function AnimatedChromatogram({
 
   return (
     <svg
-      viewBox="0 0 440 220"
+      viewBox="0 0 440 210"
       className={`h-auto w-full max-w-full ${className}`}
       role="img"
       aria-label={`${title}: absorbance units versus time with target and non-target peaks`}
@@ -44,20 +50,22 @@ export default function AnimatedChromatogram({
     >
       <title>{title}</title>
 
-      <text
-        x="220"
-        y="22"
-        textAnchor="middle"
-        fill="#0f172a"
-        fontSize="13"
-        fontFamily="IBM Plex Sans, sans-serif"
-        fontWeight="600"
-      >
-        {title}
-      </text>
+      {showTitle ? (
+        <text
+          x="220"
+          y="18"
+          textAnchor="middle"
+          fill="#0f172a"
+          fontSize="13"
+          fontFamily="IBM Plex Sans, sans-serif"
+          fontWeight="600"
+        >
+          {title}
+        </text>
+      ) : null}
 
       {/* Axes */}
-      <line x1="36" y1="36" x2="36" y2="168" stroke="#0f172a" strokeWidth="1.4" />
+      <line x1="36" y1="28" x2="36" y2="168" stroke="#0f172a" strokeWidth="1.4" />
       <line x1="36" y1="168" x2="410" y2="168" stroke="#0f172a" strokeWidth="1.4" />
 
       {/* Y ticks + AU */}
@@ -66,11 +74,11 @@ export default function AnimatedChromatogram({
       ))}
       <text
         x="18"
-        y="108"
+        y="100"
         fill="#0f172a"
         fontSize="12"
         fontFamily="IBM Plex Sans, sans-serif"
-        transform="rotate(-90 18 108)"
+        transform="rotate(-90 18 100)"
         textAnchor="middle"
       >
         AU
@@ -82,7 +90,7 @@ export default function AnimatedChromatogram({
       ))}
       <text
         x="410"
-        y="198"
+        y="196"
         textAnchor="end"
         fill="#0f172a"
         fontSize="12"
@@ -119,12 +127,10 @@ export default function AnimatedChromatogram({
             transition: reduceMotion ? 'none' : 'opacity 0.45s ease 1.6s',
           }}
         >
-          {/* Target */}
-          <line x1="139" y1="70" x2="139" y2="88" stroke="#0f172a" strokeWidth="1" />
-          <polygon points="139,92 136,86 142,86" fill="#0f172a" />
+          {/* Target — centered on peak apex x=136, y=92 */}
           <text
-            x="139"
-            y="62"
+            x={TARGET_X}
+            y="58"
             textAnchor="middle"
             fill="#0f172a"
             fontSize="12"
@@ -133,11 +139,23 @@ export default function AnimatedChromatogram({
           >
             Target
           </text>
+          <line
+            x1={TARGET_X}
+            y1="62"
+            x2={TARGET_X}
+            y2="84"
+            stroke="#0f172a"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points={`${TARGET_X},90 ${TARGET_X - 3.5},83 ${TARGET_X + 3.5},83`}
+            fill="#0f172a"
+          />
 
-          {/* Non-target */}
+          {/* Non-target — label centered between peaks; arrows on each apex */}
           <text
-            x="288"
-            y="28"
+            x={NON_TARGET_LABEL_X}
+            y="22"
             textAnchor="middle"
             fill="#0f172a"
             fontSize="12"
@@ -146,18 +164,32 @@ export default function AnimatedChromatogram({
           >
             Non-target
           </text>
-          <line x1="269" y1="32" x2="269" y2="72" stroke="#0f172a" strokeWidth="1" />
-          <polygon points="269,76 266,70 272,70" fill="#0f172a" />
-          <line x1="313" y1="32" x2="313" y2="44" stroke="#0f172a" strokeWidth="1" />
-          <polygon points="313,48 310,42 316,42" fill="#0f172a" />
+          <line
+            x1={NON_TARGET_A_X}
+            y1="26"
+            x2={NON_TARGET_A_X}
+            y2="70"
+            stroke="#0f172a"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points={`${NON_TARGET_A_X},76 ${NON_TARGET_A_X - 3.5},69 ${NON_TARGET_A_X + 3.5},69`}
+            fill="#0f172a"
+          />
+          <line
+            x1={NON_TARGET_B_X}
+            y1="26"
+            x2={NON_TARGET_B_X}
+            y2="40"
+            stroke="#0f172a"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points={`${NON_TARGET_B_X},46 ${NON_TARGET_B_X - 3.5},39 ${NON_TARGET_B_X + 3.5},39`}
+            fill="#0f172a"
+          />
         </g>
       ) : null}
-
-      <defs>
-        <clipPath id={`chrom-clip-${uid}`}>
-          <rect x="36" y="36" width="374" height="132" />
-        </clipPath>
-      </defs>
     </svg>
   )
 }

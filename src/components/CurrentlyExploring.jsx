@@ -32,7 +32,7 @@ export default function CurrentlyExploring() {
           </p>
         </motion.div>
 
-        <ol className="mt-10 max-w-xl space-y-0">
+        <ol className="mt-10 flex max-w-xl flex-col items-center">
           {currentlyExploring.map((item, index) => (
             <motion.li
               key={item}
@@ -43,13 +43,16 @@ export default function CurrentlyExploring() {
                 duration: reduceMotion ? 0 : 0.3,
                 delay: reduceMotion ? 0 : index * 0.04,
               }}
-              className="flex flex-col items-start"
+              className="flex w-full flex-col items-center"
             >
-              <div className="border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-medium text-[var(--color-text)] sm:text-base">
+              <div className="w-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-center text-sm font-medium text-[var(--color-text)] sm:text-base">
                 {item}
               </div>
               {index < currentlyExploring.length - 1 ? (
-                <ArrowDown className="my-2 size-4 text-[var(--color-accent)]" aria-hidden />
+                <ArrowDown
+                  className="my-2 size-4 shrink-0 text-[var(--color-accent)]"
+                  aria-hidden
+                />
               ) : null}
             </motion.li>
           ))}
