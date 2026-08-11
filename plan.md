@@ -2,7 +2,7 @@
 
 > Source of truth: [`PRD.md`](./PRD.md)  
 > Goal: Build a complete, PRD-aligned research portfolio with **zero missed sections**, then deploy free on GitHub Pages.  
-> Status: **Phases A–E complete (2026-08-11) — ready for Phase F deploy**  
+> Status: **Phase F complete — live on GitHub Pages**  
 > GitHub: **MihirChandratre08** → repo `MihirChandratre08.github.io` → https://MihirChandratre08.github.io/
 
 ---
@@ -533,7 +533,7 @@ Mobile: single-column hero, stacked research cards, vertical timeline, hamburger
 | 2026-08-11 | C | ✅ Research, modal, projects, timeline complete |
 | 2026-08-11 | D | ✅ Education through Currently Exploring complete |
 | 2026-08-11 | E | ✅ Contact, Research Mode, README complete |
-| — | F | ⏳ Next — create repo + push |
+| 2026-08-11 | F | ✅ Repo live + Pages deploy succeeded |
 
 ### Phase A — Foundation `[x]`
 
@@ -586,12 +586,12 @@ Mobile: single-column hero, stacked research cards, vertical timeline, hamburger
 6. [ ] Lighthouse audit after deploy (Phase F)  
 7. [x] README  
 
-### Phase F — Deploy `[ ]`
+### Phase F — Deploy `[x]`
 
-1. [ ] Create GitHub repo `MihirChandratre08.github.io`  
+1. [x] Create GitHub repo `MihirChandratre08.github.io`  
 2. [x] Vite `base: '/'` set  
 3. [x] Actions workflow present  
-4. [ ] Push `main` and verify live site  
+4. [x] Push `main` and verify live site — https://MihirChandratre08.github.io/  
 5. [ ] Optional custom domain later
 
 ---
@@ -637,9 +637,11 @@ Who → Specialize → Researched → Techniques → Published/Achieved → Oppo
 
 | Item | Owner | When |
 |------|-------|------|
-| Create GitHub repo `MihirChandratre08.github.io` + push | Mihir / agent on request | Phase F |
+| Optional custom domain | Mihir | Phase 2 (optional) |
+| Lighthouse audit on live URL | Mihir / agent | Post-deploy polish |
 
-Phase A–E can continue without deploy.
+**Live site:** https://MihirChandratre08.github.io/  
+**Repo:** https://github.com/MihirChandratre08/MihirChandratre08.github.io
 
 ---
 
