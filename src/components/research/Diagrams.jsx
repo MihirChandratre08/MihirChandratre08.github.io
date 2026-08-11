@@ -92,7 +92,7 @@ export function BsaNanoparticleDiagram({ className = '' }) {
 export function ChromatogramDiagram({ className = '' }) {
   return (
     <div className={`w-full min-w-0 ${className}`}>
-      <AnimatedChromatogram title="HPLC chromatogram" showLabels animate />
+      <AnimatedChromatogram title="HPLC chromatogram" animate />
     </div>
   )
 }
