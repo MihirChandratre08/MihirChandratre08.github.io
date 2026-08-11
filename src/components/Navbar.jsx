@@ -32,12 +32,12 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className="section-shell flex h-[var(--spacing-nav)] items-center justify-between gap-4"
+        className="section-shell flex h-[var(--spacing-nav)] min-w-0 items-center justify-between gap-2 sm:gap-4"
         aria-label="Primary"
       >
         <a
           href="#top"
-          className="font-display text-sm font-semibold tracking-[0.08em] text-[var(--color-text)] sm:text-base"
+          className="font-display min-w-0 truncate text-sm font-semibold tracking-[0.08em] text-[var(--color-text)] sm:text-base"
           onClick={close}
         >
           {profile.brand}

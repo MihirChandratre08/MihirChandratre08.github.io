@@ -21,6 +21,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -39,7 +40,9 @@
 
   body {
     margin: 0;
-    min-width: 320px;
+    min-width: 0;
+    width: 100%;
+    overflow-x: clip;
     font-family: var(--font-body);
     color: var(--color-text);
     background:
@@ -52,6 +55,16 @@
 
   #root {
     min-height: 100svh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
   }
 
   h1,
@@ -78,8 +91,11 @@
 
 @layer utilities {
   .section-shell {
-    width: min(1120px, calc(100% - 2rem));
+    width: 100%;
+    max-width: 1120px;
     margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+    box-sizing: border-box;
   }
 
   .section-pad {

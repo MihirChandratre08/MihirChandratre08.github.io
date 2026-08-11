@@ -47,10 +47,10 @@ export default function Research() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: reduceMotion ? 0 : 0.5 }}
-          className="mt-10 border border-[var(--color-border)] bg-[var(--color-surface)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]"
+          className="mt-10 min-w-0 border border-[var(--color-border)] bg-[var(--color-surface)] transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)]"
         >
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="border-b border-[var(--color-border)] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+          <div className="grid min-w-0 lg:grid-cols-2">
+            <div className="min-w-0 border-b border-[var(--color-border)] p-5 sm:p-8 lg:border-b-0 lg:border-r">
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
                 M.S. Research Project
               </p>
@@ -86,19 +86,19 @@ export default function Research() {
               </button>
             </div>
 
-            <div className="flex items-center bg-[color-mix(in_srgb,var(--color-accent-soft)_45%,var(--color-surface))] p-4 sm:p-6">
+            <div className="flex min-w-0 items-center bg-[color-mix(in_srgb,var(--color-accent-soft)_45%,var(--color-surface))] p-4 sm:p-6">
               <BsaNanoparticleDiagram className="w-full" />
             </div>
           </div>
         </motion.article>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-8 grid min-w-0 gap-5 lg:grid-cols-2">
           <motion.article
             initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: reduceMotion ? 0 : 0.4 }}
-            className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)] sm:p-7"
+            className="min-w-0 border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)] sm:p-7"
           >
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
               Analytical Project
@@ -107,7 +107,7 @@ export default function Research() {
               {rpHplc.title}
             </h3>
             <p className="mt-3 text-[var(--color-muted)]">{rpHplc.description}</p>
-            <div className="mt-5 border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
+            <div className="mt-5 min-w-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)] p-2 sm:p-3">
               <ChromatogramDiagram className="w-full" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-2">
@@ -127,7 +127,7 @@ export default function Research() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: reduceMotion ? 0 : 0.4, delay: reduceMotion ? 0 : 0.05 }}
-            className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)] sm:p-7"
+            className="min-w-0 border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)] sm:p-7"
           >
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">
               Formulation Project
@@ -136,8 +136,8 @@ export default function Research() {
               {polyherbal.title}
             </h3>
             <p className="mt-3 text-[var(--color-muted)]">{polyherbal.description}</p>
-            <div className="mt-5 overflow-x-auto border border-[var(--color-border)] bg-[var(--color-bg)] p-2">
-              <FacewashFlowDiagram className="min-w-[360px] w-full" />
+            <div className="mt-5 min-w-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)] p-2">
+              <FacewashFlowDiagram className="w-full" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-2">
               {polyherbal.tags.map((tag) => (

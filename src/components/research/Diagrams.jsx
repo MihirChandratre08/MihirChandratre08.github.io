@@ -1,10 +1,13 @@
+import AnimatedChromatogram from '../AnimatedChromatogram'
+
 export function BsaNanoparticleDiagram({ className = '' }) {
   return (
     <svg
       viewBox="0 0 520 280"
-      className={className}
+      className={`h-auto w-full max-w-full ${className}`}
       role="img"
       aria-label="Diagram of niclosamide and ribociclib loading into a BSA nanoparticle decorated with PD-L1 peptide"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <radialGradient id="bsaCore" cx="50%" cy="50%" r="50%">
@@ -19,14 +22,29 @@ export function BsaNanoparticleDiagram({ className = '' }) {
       <path d="M70 52 L70 100 L210 130" fill="none" stroke="#0f766e" strokeWidth="1.6" />
       <polygon points="205,122 218,132 205,138" fill="#0f766e" />
 
-      <text x="400" y="42" fill="#0f172a" fontSize="13" fontFamily="IBM Plex Sans, sans-serif" textAnchor="end">
+      <text
+        x="400"
+        y="42"
+        fill="#0f172a"
+        fontSize="13"
+        fontFamily="IBM Plex Sans, sans-serif"
+        textAnchor="end"
+      >
         Ribociclib
       </text>
       <path d="M450 52 L450 100 L310 130" fill="none" stroke="#0f766e" strokeWidth="1.6" />
       <polygon points="315,122 302,132 315,138" fill="#0f766e" />
 
       <circle cx="260" cy="150" r="58" fill="url(#bsaCore)" stroke="#0f766e" strokeWidth="2" />
-      <circle cx="260" cy="150" r="34" fill="#ffffff" fillOpacity="0.55" stroke="#0f172a" strokeWidth="1" />
+      <circle
+        cx="260"
+        cy="150"
+        r="34"
+        fill="#ffffff"
+        fillOpacity="0.55"
+        stroke="#0f172a"
+        strokeWidth="1"
+      />
       <text
         x="260"
         y="146"
@@ -73,33 +91,9 @@ export function BsaNanoparticleDiagram({ className = '' }) {
 
 export function ChromatogramDiagram({ className = '' }) {
   return (
-    <svg
-      viewBox="0 0 420 180"
-      className={className}
-      role="img"
-      aria-label="Simplified chromatogram showing analyte peaks over time"
-    >
-      <text x="8" y="18" fill="#475569" fontSize="11" fontFamily="IBM Plex Sans, sans-serif">
-        Response
-      </text>
-      <line x1="28" y1="28" x2="28" y2="140" stroke="#94a3b8" strokeWidth="1" />
-      <line x1="28" y1="140" x2="400" y2="140" stroke="#94a3b8" strokeWidth="1" />
-      <path
-        d="M28 132 C55 132 70 128 85 90 C100 52 112 48 125 72 C140 102 150 128 175 130 C205 132 220 70 245 48 C270 26 285 30 300 58 C318 94 330 126 360 130 C380 132 392 132 400 132"
-        fill="none"
-        stroke="#0f766e"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M28 132 C55 132 70 128 85 90 C100 52 112 48 125 72 C140 102 150 128 175 130 C205 132 220 70 245 48 C270 26 285 30 300 58 C318 94 330 126 360 130 C380 132 392 132 400 132 L400 140 L28 140 Z"
-        fill="#0f766e"
-        fillOpacity="0.08"
-      />
-      <text x="360" y="158" fill="#475569" fontSize="11" fontFamily="IBM Plex Sans, sans-serif">
-        Time →
-      </text>
-    </svg>
+    <div className={`w-full min-w-0 ${className}`}>
+      <AnimatedChromatogram title="HPLC chromatogram" showLabels animate />
+    </div>
   )
 }
 
@@ -108,9 +102,10 @@ export function FacewashFlowDiagram({ className = '' }) {
   return (
     <svg
       viewBox="0 0 420 120"
-      className={className}
+      className={`h-auto w-full max-w-full min-w-0 ${className}`}
       role="img"
       aria-label="Process flow from formulation to product performance"
+      preserveAspectRatio="xMidYMid meet"
     >
       {steps.map((step, index) => {
         const x = 20 + index * 100

@@ -57,6 +57,7 @@ export const navLinks = [
 export const hero = {
   heading: 'Mihir Chandratre',
   subtitle: 'M.S. (Pharm.) Pharmaceutical Analysis',
+  affiliation: 'NIPER Kolkata',
   statement:
     'Pharmaceutical Analysis Researcher focused on analytical method development, HPLC validation, pharmaceutical characterization, and research-driven drug development.',
   tags: [
