@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#0F172A"/>
+  <path d="M10 42 C18 42 20 22 28 22 C36 22 38 42 46 42 C52 42 54 32 58 32"
+        stroke="#0F766E" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <circle cx="28" cy="22" r="3" fill="#CCFBF1"/>
+  <circle cx="46" cy="42" r="3" fill="#CCFBF1"/>
+  <text x="32" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#F7F8F6">MC</text>
+</svg>
