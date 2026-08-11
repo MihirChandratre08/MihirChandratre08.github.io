@@ -56,7 +56,7 @@ export default function AnimatedChromatogram({
         ref={pathRef}
         d={linePath}
         fill="none"
-        stroke="#0f766e"
+        stroke="#0b9b7a"
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"

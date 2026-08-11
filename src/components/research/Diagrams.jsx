@@ -11,45 +11,45 @@ export function BsaNanoparticleDiagram({ className = '' }) {
     >
       <defs>
         <radialGradient id="bsaCore" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ccfbf1" />
-          <stop offset="100%" stopColor="#0f766e" stopOpacity="0.35" />
+          <stop offset="0%" stopColor="#d1fae5" />
+          <stop offset="100%" stopColor="#0b9b7a" stopOpacity="0.35" />
         </radialGradient>
       </defs>
 
-      <text x="40" y="42" fill="#0f172a" fontSize="13" fontFamily="IBM Plex Sans, sans-serif">
+      <text x="40" y="42" fill="#111827" fontSize="13" fontFamily="IBM Plex Sans, sans-serif">
         Niclosamide
       </text>
-      <path d="M70 52 L70 100 L210 130" fill="none" stroke="#0f766e" strokeWidth="1.6" />
-      <polygon points="205,122 218,132 205,138" fill="#0f766e" />
+      <path d="M70 52 L70 100 L210 130" fill="none" stroke="#0b9b7a" strokeWidth="1.6" />
+      <polygon points="205,122 218,132 205,138" fill="#0b9b7a" />
 
       <text
         x="400"
         y="42"
-        fill="#0f172a"
+        fill="#111827"
         fontSize="13"
         fontFamily="IBM Plex Sans, sans-serif"
         textAnchor="end"
       >
         Ribociclib
       </text>
-      <path d="M450 52 L450 100 L310 130" fill="none" stroke="#0f766e" strokeWidth="1.6" />
-      <polygon points="315,122 302,132 315,138" fill="#0f766e" />
+      <path d="M450 52 L450 100 L310 130" fill="none" stroke="#0b9b7a" strokeWidth="1.6" />
+      <polygon points="315,122 302,132 315,138" fill="#0b9b7a" />
 
-      <circle cx="260" cy="150" r="58" fill="url(#bsaCore)" stroke="#0f766e" strokeWidth="2" />
+      <circle cx="260" cy="150" r="58" fill="url(#bsaCore)" stroke="#0b9b7a" strokeWidth="2" />
       <circle
         cx="260"
         cy="150"
         r="34"
         fill="#ffffff"
         fillOpacity="0.55"
-        stroke="#0f172a"
+        stroke="#111827"
         strokeWidth="1"
       />
       <text
         x="260"
         y="146"
         textAnchor="middle"
-        fill="#0f172a"
+        fill="#111827"
         fontSize="14"
         fontFamily="Source Serif 4, Georgia, serif"
         fontWeight="600"
@@ -60,18 +60,18 @@ export function BsaNanoparticleDiagram({ className = '' }) {
         x="260"
         y="166"
         textAnchor="middle"
-        fill="#475569"
+        fill="#4b5563"
         fontSize="12"
         fontFamily="IBM Plex Sans, sans-serif"
       >
         NP
       </text>
 
-      <circle cx="318" cy="118" r="7" fill="#0f766e" />
-      <circle cx="330" cy="156" r="6" fill="#0f766e" />
-      <circle cx="312" cy="188" r="7" fill="#0f766e" />
-      <path d="M324 118 L380 96" stroke="#0f172a" strokeWidth="1.2" />
-      <text x="386" y="100" fill="#0f172a" fontSize="12" fontFamily="IBM Plex Sans, sans-serif">
+      <circle cx="318" cy="118" r="7" fill="#0b9b7a" />
+      <circle cx="330" cy="156" r="6" fill="#0b9b7a" />
+      <circle cx="312" cy="188" r="7" fill="#0b9b7a" />
+      <path d="M324 118 L380 96" stroke="#111827" strokeWidth="1.2" />
+      <text x="386" y="100" fill="#111827" fontSize="12" fontFamily="IBM Plex Sans, sans-serif">
         PD-L1 peptide
       </text>
 
@@ -118,14 +118,14 @@ export function FacewashFlowDiagram({ className = '' }) {
               height="48"
               rx="4"
               fill="#ffffff"
-              stroke="#0f766e"
+              stroke="#0b9b7a"
               strokeWidth="1.4"
             />
             <text
               x={x + 44}
               y="56"
               textAnchor="middle"
-              fill="#0f172a"
+              fill="#111827"
               fontSize="10"
               fontFamily="IBM Plex Sans, sans-serif"
             >
@@ -136,7 +136,7 @@ export function FacewashFlowDiagram({ className = '' }) {
                 x={x + 44}
                 y="70"
                 textAnchor="middle"
-                fill="#475569"
+                fill="#4b5563"
                 fontSize="10"
                 fontFamily="IBM Plex Sans, sans-serif"
               >
@@ -146,7 +146,7 @@ export function FacewashFlowDiagram({ className = '' }) {
             {index < steps.length - 1 ? (
               <path
                 d={`M${x + 90} 52 L${x + 98} 52`}
-                stroke="#0f172a"
+                stroke="#111827"
                 strokeWidth="1.4"
                 markerEnd="url(#arrow)"
               />
@@ -156,7 +156,7 @@ export function FacewashFlowDiagram({ className = '' }) {
       })}
       <defs>
         <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6 Z" fill="#0f172a" />
+          <path d="M0,0 L6,3 L0,6 Z" fill="#111827" />
         </marker>
       </defs>
     </svg>

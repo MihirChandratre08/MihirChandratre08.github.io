@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
+/* Theme: A (Teal Lab) + C (Graphite Emerald) hybrid */
 @theme {
-  --color-bg: #f7f8f6;
+  --color-deep: #0c1614;
+  --color-graphite: #111827;
+  --color-bg: #f4f7f6;
   --color-surface: #ffffff;
-  --color-text: #0f172a;
-  --color-muted: #475569;
-  --color-accent: #0f766e;
-  --color-accent-soft: #ccfbf1;
-  --color-border: #e2e8f0;
+  --color-text: #111827;
+  --color-muted: #4b5563;
+  --color-accent: #0b9b7a;
+  --color-accent-deep: #0f766e;
+  --color-accent-soft: #d1fae5;
+  --color-border: #dbe4e1;
   --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
   --spacing-section: clamp(4rem, 8vw, 7rem);
@@ -45,10 +49,24 @@
     overflow-x: clip;
     font-family: var(--font-body);
     color: var(--color-text);
-    background:
-      radial-gradient(ellipse 80% 50% at 100% -10%, rgba(15, 118, 110, 0.08), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 0% 20%, rgba(15, 23, 42, 0.04), transparent 50%),
-      var(--color-bg);
+    background-color: var(--color-bg);
+    background-image:
+      radial-gradient(ellipse 90% 55% at 88% -8%, rgba(5, 150, 105, 0.28), transparent 58%),
+      radial-gradient(ellipse 65% 40% at 8% 18%, rgba(15, 118, 110, 0.2), transparent 52%),
+      linear-gradient(
+        180deg,
+        #0c1614 0%,
+        #111827 7%,
+        #134e4a 15%,
+        #0f766e 24%,
+        #0b9b7a 32%,
+        #6ee7b7 42%,
+        #d1fae5 52%,
+        #f4f7f6 62%,
+        #f4f7f6 100%
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%, 100% 100%, 100% 1200px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -104,13 +122,23 @@
 }
 
 html[data-research-mode='on'] body {
-  background:
-    radial-gradient(ellipse 70% 45% at 100% 0%, rgba(15, 118, 110, 0.14), transparent 55%),
-    radial-gradient(ellipse 50% 35% at 0% 30%, rgba(15, 23, 42, 0.06), transparent 50%),
-    linear-gradient(180deg, rgba(204, 251, 241, 0.25), transparent 28%),
-    var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 90% 0%, rgba(5, 150, 105, 0.32), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 0% 25%, rgba(15, 118, 110, 0.25), transparent 50%),
+    linear-gradient(
+      180deg,
+      #0c1614 0%,
+      #111827 8%,
+      #065f46 18%,
+      #0f766e 28%,
+      #34d399 42%,
+      #ecfdf5 56%,
+      #f4f7f6 68%
+    );
+  background-size: 100% 100%, 100% 100%, 100% 1200px;
 }
 
 html[data-research-mode='on'] {
-  --color-border: #99f6e4;
+  --color-border: #6ee7b7;
+  --color-accent: #059669;
 }

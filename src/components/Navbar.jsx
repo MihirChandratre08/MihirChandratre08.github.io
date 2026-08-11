@@ -25,10 +25,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] ${
+      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow,color] ${
         scrolled
-          ? 'border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] shadow-sm backdrop-blur-md'
-          : 'border-transparent bg-[color-mix(in_srgb,var(--color-bg)_70%,transparent)] backdrop-blur-sm'
+          ? 'border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_88%,transparent)] text-[var(--color-text)] shadow-sm backdrop-blur-md'
+          : 'border-transparent bg-gradient-to-b from-black/35 to-transparent text-white backdrop-blur-sm'
       }`}
     >
       <nav
@@ -37,7 +37,9 @@ export default function Navbar() {
       >
         <a
           href="#top"
-          className="font-display min-w-0 truncate text-sm font-semibold tracking-[0.08em] text-[var(--color-text)] sm:text-base"
+          className={`font-display min-w-0 truncate text-sm font-semibold tracking-[0.08em] sm:text-base ${
+            scrolled ? 'text-[var(--color-text)]' : 'text-white'
+          }`}
           onClick={close}
         >
           {profile.brand}
@@ -48,7 +50,11 @@ export default function Navbar() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className="rounded-md px-2.5 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-accent)]"
+                className={`rounded-md px-2.5 py-2 text-sm transition-colors ${
+                  scrolled
+                    ? 'text-[var(--color-muted)] hover:text-[var(--color-accent)]'
+                    : 'text-white/80 hover:text-emerald-300'
+                }`}
               >
                 {link.label}
               </a>
@@ -60,7 +66,7 @@ export default function Navbar() {
           <a
             href={profile.cvPath}
             download
-            className="inline-flex items-center gap-1.5 rounded-md border border-[var(--color-accent)] bg-[var(--color-accent)] px-3 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-md border border-transparent bg-gradient-to-r from-[var(--color-accent)] to-emerald-600 px-3 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             <Download className="size-4" aria-hidden />
             <span className="hidden sm:inline">{profile.cvLabel}</span>
@@ -69,7 +75,11 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] p-2 text-[var(--color-text)] lg:hidden"
+            className={`inline-flex items-center justify-center rounded-md border p-2 lg:hidden ${
+              scrolled
+                ? 'border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)]'
+                : 'border-white/25 bg-white/10 text-white'
+            }`}
             aria-expanded={open}
             aria-controls={menuId}
             aria-label={open ? 'Close menu' : 'Open menu'}

@@ -34,13 +34,11 @@
 ### Accent tokens (Decision 6)
 
 ```css
---color-bg: #F7F8F6;          /* soft off-white */
---color-surface: #FFFFFF;
---color-text: #0F172A;        /* deep navy/charcoal */
---color-muted: #475569;
---color-accent: #0F766E;      /* scientific teal */
---color-accent-soft: #CCFBF1;
---color-border: #E2E8F0;
+--color-accent: #0b9b7a;      /* A+C hybrid teal-emerald */
+--color-accent-soft: #d1fae5;
+--color-text: #111827;        /* graphite */
+--color-bg: #f4f7f6;
+--color-deep: #0c1614;
 ```
 
 ---
