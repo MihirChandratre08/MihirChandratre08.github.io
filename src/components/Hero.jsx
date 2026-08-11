@@ -58,10 +58,13 @@ export default function Hero() {
       id="top"
       className="relative overflow-x-clip"
       aria-labelledby="hero-heading"
+      style={{
+        backgroundImage:
+          'radial-gradient(ellipse 90% 60% at 90% 0%, rgba(5,150,105,0.28), transparent 55%), linear-gradient(180deg, #0c1614 0%, #111827 28%, #134e4a 62%, #0f766e 82%, #0b9b7a 100%)',
+      }}
     >
-      {/* Keeps left copy readable over the gradient */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-full max-w-3xl bg-gradient-to-r from-black/55 via-black/35 to-transparent lg:max-w-[58%]"
+        className="pointer-events-none absolute inset-y-0 left-0 w-full max-w-3xl bg-gradient-to-r from-black/50 via-black/25 to-transparent lg:max-w-[58%]"
         aria-hidden
       />
 

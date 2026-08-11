@@ -7,11 +7,11 @@
   --color-bg: #f4f7f6;
   --color-surface: #ffffff;
   --color-text: #111827;
-  --color-muted: #4b5563;
+  --color-muted: #374151;
   --color-accent: #0b9b7a;
   --color-accent-deep: #0f766e;
   --color-accent-soft: #d1fae5;
-  --color-border: #dbe4e1;
+  --color-border: #d1ddd8;
   --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
   --spacing-section: clamp(4rem, 8vw, 7rem);
@@ -49,24 +49,13 @@
     overflow-x: clip;
     font-family: var(--font-body);
     color: var(--color-text);
+    /* Light page base — readable everywhere below hero */
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse 90% 55% at 88% -8%, rgba(5, 150, 105, 0.22), transparent 58%),
-      radial-gradient(ellipse 65% 40% at 8% 18%, rgba(15, 118, 110, 0.18), transparent 52%),
-      linear-gradient(
-        180deg,
-        #0c1614 0%,
-        #111827 10%,
-        #0f2f2a 22%,
-        #134e4a 34%,
-        #0f766e 48%,
-        #0b9b7a 58%,
-        #a7f3d0 72%,
-        #f4f7f6 84%,
-        #f4f7f6 100%
-      );
+      radial-gradient(ellipse 80% 40% at 100% 0%, rgba(11, 155, 122, 0.08), transparent 55%),
+      radial-gradient(ellipse 60% 30% at 0% 40%, rgba(15, 118, 110, 0.05), transparent 50%),
+      linear-gradient(180deg, #ecfdf5 0%, #f4f7f6 18%, #f4f7f6 100%);
     background-repeat: no-repeat;
-    background-size: 100% 100%, 100% 100%, 100% 1600px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
@@ -119,26 +108,41 @@
   .section-pad {
     padding-block: var(--spacing-section);
   }
+
+  /* Shared content-panel look for whole-page theme */
+  .theme-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
+  }
+
+  .theme-band {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--color-accent-soft) 55%, white), var(--color-surface));
+    border-block: 1px solid var(--color-border);
+  }
+
+  .theme-band-soft {
+    background: color-mix(in srgb, var(--color-accent-soft) 28%, var(--color-bg));
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+  }
 }
 
 html[data-research-mode='on'] body {
   background-image:
-    radial-gradient(ellipse 80% 50% at 90% 0%, rgba(5, 150, 105, 0.32), transparent 55%),
-    radial-gradient(ellipse 55% 40% at 0% 25%, rgba(15, 118, 110, 0.25), transparent 50%),
-    linear-gradient(
-      180deg,
-      #0c1614 0%,
-      #111827 8%,
-      #065f46 18%,
-      #0f766e 28%,
-      #34d399 42%,
-      #ecfdf5 56%,
-      #f4f7f6 68%
-    );
-  background-size: 100% 100%, 100% 100%, 100% 1200px;
+    radial-gradient(ellipse 70% 40% at 100% 0%, rgba(5, 150, 105, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 30% at 0% 30%, rgba(15, 118, 110, 0.1), transparent 50%),
+    linear-gradient(180deg, #d1fae5 0%, #ecfdf5 20%, #f4f7f6 100%);
 }
 
 html[data-research-mode='on'] {
-  --color-border: #6ee7b7;
+  --color-border: #a7f3d0;
   --color-accent: #059669;
 }

@@ -22,19 +22,21 @@ export default function App() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <Stats />
-        <About />
-        <Expertise />
-        <Research />
-        <Timeline />
-        <Education />
-        <Publication />
-        <Certifications />
-        <Achievements />
-        <Conferences />
-        <ResearchInterests />
-        <CurrentlyExploring />
-        <Contact />
+        <div className="relative z-[1] bg-[var(--color-bg)] text-[var(--color-text)] shadow-[0_-16px_40px_rgba(12,22,20,0.18)]">
+          <Stats />
+          <About />
+          <Expertise />
+          <Research />
+          <Timeline />
+          <Education />
+          <Publication />
+          <Certifications />
+          <Achievements />
+          <Conferences />
+          <ResearchInterests />
+          <CurrentlyExploring />
+          <Contact />
+        </div>
       </main>
       <Footer />
       <ResearchModeToggle />

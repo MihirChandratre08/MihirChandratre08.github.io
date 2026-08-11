@@ -10,7 +10,7 @@ export default function Expertise() {
   return (
     <section
       id={analyticalSkills.id}
-      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface)_70%,var(--color-bg))]"
+      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] theme-band-soft"
       aria-labelledby="expertise-heading"
     >
       <div className="section-shell">
@@ -21,9 +21,7 @@ export default function Expertise() {
           transition={{ duration: reduceMotion ? 0 : 0.45 }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-[var(--color-accent)]">
-            Expertise
-          </p>
+          <p className="eyebrow">Expertise</p>
           <h2
             id="expertise-heading"
             className="font-display mt-3 text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl"
@@ -46,7 +44,7 @@ export default function Expertise() {
                   duration: reduceMotion ? 0 : 0.4,
                   delay: reduceMotion ? 0 : index * 0.06,
                 }}
-                className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]"
+                className="theme-card p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]"
               >
                 <Icon className="size-5 text-[var(--color-accent)]" aria-hidden />
                 <h3 className="font-display mt-4 text-xl font-semibold text-[var(--color-text)]">
