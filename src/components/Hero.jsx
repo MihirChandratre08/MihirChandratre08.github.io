@@ -5,7 +5,7 @@ import AnimatedChromatogram from './AnimatedChromatogram'
 
 function ScientificVisual() {
   return (
-    <div className="relative w-full min-w-0 overflow-hidden border border-white/20 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+    <div className="relative w-full min-w-0 overflow-hidden border border-white/25 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
       <div
         className="pointer-events-none absolute inset-0 opacity-50"
         style={{
@@ -56,10 +56,16 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-x-clip border-b border-white/10"
+      className="relative overflow-x-clip"
       aria-labelledby="hero-heading"
     >
-      <div className="section-shell grid grid-cols-1 items-center gap-8 py-[clamp(2.5rem,6vw,5rem)] md:gap-10 lg:grid-cols-2 lg:gap-12">
+      {/* Keeps left copy readable over the gradient */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-full max-w-3xl bg-gradient-to-r from-black/55 via-black/35 to-transparent lg:max-w-[58%]"
+        aria-hidden
+      />
+
+      <div className="section-shell relative grid grid-cols-1 items-center gap-8 py-[clamp(2.5rem,6vw,5rem)] md:gap-10 lg:grid-cols-2 lg:gap-12">
         <motion.div className="min-w-0" initial="hidden" animate="show" variants={fadeUp}>
           <div className="flex items-center gap-3">
             <picture>
@@ -69,29 +75,37 @@ export default function Hero() {
                 alt={profile.photo.alt}
                 width={64}
                 height={64}
-                className="size-14 shrink-0 rounded-full border-2 border-white/30 object-cover object-top sm:size-16"
+                className="size-14 shrink-0 rounded-full border-2 border-white/50 object-cover object-top sm:size-16"
               />
             </picture>
-            <p className="text-sm font-medium text-emerald-300">{profile.identity}</p>
+            <p className="text-sm font-semibold text-emerald-300 drop-shadow-sm">
+              {profile.identity}
+            </p>
           </div>
 
           <h1
             id="hero-heading"
-            className="font-display mt-5 text-[clamp(2rem,6vw,4rem)] font-semibold leading-[1.08] tracking-tight text-white break-words"
+            className="font-display mt-5 text-[clamp(2rem,6vw,4rem)] font-semibold leading-[1.08] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] break-words"
           >
             {hero.heading}
           </h1>
 
-          <p className="mt-3 text-base text-slate-200 sm:text-lg md:text-xl">{hero.subtitle}</p>
-          <p className="mt-1 text-sm font-medium text-emerald-300 sm:text-base">{hero.affiliation}</p>
+          <p className="mt-3 text-base font-medium text-white sm:text-lg md:text-xl">
+            {hero.subtitle}
+          </p>
+          <p className="mt-1 text-sm font-semibold text-emerald-300 sm:text-base">
+            {hero.affiliation}
+          </p>
 
-          <p className="mt-5 max-w-xl leading-relaxed text-slate-300">{hero.statement}</p>
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/95 sm:text-base">
+            {hero.statement}
+          </p>
 
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Focus areas">
             {hero.tags.map((tag) => (
               <li
                 key={tag}
-                className="border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-slate-100 backdrop-blur-sm sm:text-sm"
+                className="border border-white/30 bg-black/35 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm sm:text-sm"
               >
                 {tag}
               </li>
@@ -101,7 +115,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={hero.primaryCta.href}
-              className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[var(--color-accent)] to-emerald-600 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-emerald-900/30 transition-opacity hover:opacity-90 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[var(--color-accent)] to-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 transition-opacity hover:opacity-90 sm:w-auto"
             >
               {hero.primaryCta.label}
               <ArrowRight className="size-4 shrink-0" aria-hidden />
@@ -109,7 +123,7 @@ export default function Hero() {
             <a
               href={hero.secondaryCta.href}
               download={hero.secondaryCta.download || undefined}
-              className="inline-flex w-full items-center justify-center gap-2 border border-white/25 bg-white/10 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/15 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 border-2 border-white bg-white px-5 py-3 text-sm font-semibold text-[var(--color-graphite)] shadow-lg shadow-black/25 transition-colors hover:bg-emerald-50 sm:w-auto"
             >
               {hero.secondaryCta.label}
               <ArrowDown className="size-4 shrink-0" aria-hidden />
@@ -118,7 +132,7 @@ export default function Hero() {
               href={hero.tertiaryCta.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 px-2 py-3 text-sm font-medium text-slate-200 transition-colors hover:text-emerald-300 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 border border-white/50 bg-black/30 px-4 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-emerald-300 hover:text-emerald-200 sm:w-auto"
             >
               LinkedIn
               <ExternalLink className="size-4 shrink-0" aria-hidden />

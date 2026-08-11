@@ -51,22 +51,22 @@
     color: var(--color-text);
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse 90% 55% at 88% -8%, rgba(5, 150, 105, 0.28), transparent 58%),
-      radial-gradient(ellipse 65% 40% at 8% 18%, rgba(15, 118, 110, 0.2), transparent 52%),
+      radial-gradient(ellipse 90% 55% at 88% -8%, rgba(5, 150, 105, 0.22), transparent 58%),
+      radial-gradient(ellipse 65% 40% at 8% 18%, rgba(15, 118, 110, 0.18), transparent 52%),
       linear-gradient(
         180deg,
         #0c1614 0%,
-        #111827 7%,
-        #134e4a 15%,
-        #0f766e 24%,
-        #0b9b7a 32%,
-        #6ee7b7 42%,
-        #d1fae5 52%,
-        #f4f7f6 62%,
+        #111827 10%,
+        #0f2f2a 22%,
+        #134e4a 34%,
+        #0f766e 48%,
+        #0b9b7a 58%,
+        #a7f3d0 72%,
+        #f4f7f6 84%,
         #f4f7f6 100%
       );
     background-repeat: no-repeat;
-    background-size: 100% 100%, 100% 100%, 100% 1200px;
+    background-size: 100% 100%, 100% 100%, 100% 1600px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
