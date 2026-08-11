@@ -22,7 +22,6 @@ function ScientificVisual() {
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-accent)]">
               HPLC chromatogram
             </p>
-            <p className="mt-1 text-sm text-[var(--color-muted)]">AU vs Time · NIPER Kolkata</p>
           </div>
           <div className="shrink-0 border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-1 text-[11px] text-[var(--color-muted)]">
             Analytical Research
