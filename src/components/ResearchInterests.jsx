@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { researchInterests } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function ResearchInterests() {
   const reduceMotion = useReducedMotion()
@@ -37,7 +38,7 @@ export default function ResearchInterests() {
               viewport={{ once: true, amount: 0.35 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.4,
-                delay: reduceMotion ? 0 : index * 0.05,
+                delay: stagger(reduceMotion, index),
               }}
               className="border border-[var(--color-border)] bg-[var(--color-bg)] p-5"
             >
@@ -45,13 +46,20 @@ export default function ResearchInterests() {
                 {group.title}
               </h3>
               <ul className="mt-4 space-y-2">
-                {group.items.map((item) => (
-                  <li
+                {group.items.map((item, itemIndex) => (
+                  <motion.li
                     key={item}
+                    initial={{ opacity: 0, x: reduceMotion ? 0 : -6 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.3,
+                      delay: stagger(reduceMotion, index * 3 + itemIndex + 1, 0.04),
+                    }}
                     className="border-l border-[var(--color-accent)] pl-3 text-sm text-[var(--color-muted)]"
                   >
                     {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>

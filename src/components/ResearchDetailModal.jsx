@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { projects, researchDetailSections } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 import { BsaNanoparticleDiagram } from './research/Diagrams'
 
 export default function ResearchDetailModal({ open, onClose }) {
@@ -78,10 +79,10 @@ export default function ResearchDetailModal({ open, onClose }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-            transition={{ duration: reduceMotion ? 0 : 0.28 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3, ease: 'easeOut' }}
             className="flex h-full w-full max-w-4xl flex-col overflow-hidden bg-[var(--color-bg)] shadow-2xl sm:h-[min(92vh,900px)] sm:rounded-lg sm:border sm:border-[var(--color-border)]"
           >
             <div className="flex items-start justify-between gap-4 border-b border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4 sm:px-8">
@@ -108,12 +109,24 @@ export default function ResearchDetailModal({ open, onClose }) {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8">
-              <BsaNanoparticleDiagram className="mb-8 w-full theme-diagram" />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: reduceMotion ? 0 : 0.4, delay: reduceMotion ? 0 : 0.08 }}
+              >
+                <BsaNanoparticleDiagram className="mb-8 w-full theme-diagram" />
+              </motion.div>
 
               <ol className="space-y-6">
-                {researchDetailSections.map((section) => (
-                  <li
+                {researchDetailSections.map((section, index) => (
+                  <motion.li
                     key={section.number}
+                    initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.35,
+                      delay: stagger(reduceMotion, index, 0.06) + (reduceMotion ? 0 : 0.12),
+                    }}
                     className="border-b border-[var(--color-border)] pb-6 last:border-b-0"
                   >
                     <p className="text-xs font-medium tracking-[0.14em] text-[var(--color-accent)]">
@@ -123,7 +136,7 @@ export default function ResearchDetailModal({ open, onClose }) {
                       {section.title}
                     </h3>
                     <p className="mt-2 text-[var(--color-muted)] leading-relaxed">{section.body}</p>
-                  </li>
+                  </motion.li>
                 ))}
               </ol>
             </div>

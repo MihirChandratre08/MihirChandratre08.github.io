@@ -1,11 +1,19 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { ExternalLink, Mail, FileDown } from 'lucide-react'
 import { profile, social } from '../data/portfolio'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const reduceMotion = useReducedMotion()
 
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[#070d0c]">
+    <motion.footer
+      className="border-t border-[var(--color-border)] bg-[#070d0c]"
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: reduceMotion ? 0 : 0.45 }}
+    >
       <div className="section-shell flex flex-col gap-6 py-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-display text-lg font-semibold tracking-[0.06em] text-[var(--color-text)]">
@@ -50,6 +58,6 @@ export default function Footer() {
           © {year} {profile.name}
         </p>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

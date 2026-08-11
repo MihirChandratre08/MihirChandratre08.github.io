@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { conferences } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function Conferences() {
   const reduceMotion = useReducedMotion()
@@ -32,12 +33,12 @@ export default function Conferences() {
           {conferences.map((item, index) => (
             <motion.li
               key={item.title}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: reduceMotion ? 0 : -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.4,
-                delay: reduceMotion ? 0 : index * 0.05,
+                delay: stagger(reduceMotion, index),
               }}
               className="border-l-2 border-[var(--color-accent)] bg-[var(--color-surface)] px-5 py-5"
             >

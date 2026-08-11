@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowDown, ArrowRight, ExternalLink } from 'lucide-react'
 import { hero, profile } from '../data/portfolio'
+import { fadeUpVariants, staggerContainer } from '../lib/motion'
 import AnimatedChromatogram from './AnimatedChromatogram'
 
 function ScientificVisual() {
@@ -48,10 +49,8 @@ function ScientificVisual() {
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
-  const fadeUp = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
-    show: { opacity: 1, y: 0, transition: { duration: reduceMotion ? 0 : 0.55 } },
-  }
+  const item = fadeUpVariants(reduceMotion, 16)
+  const container = staggerContainer(reduceMotion, 0.09, 0.04)
 
   return (
     <section
@@ -69,60 +68,93 @@ export default function Hero() {
       />
 
       <div className="section-shell relative grid grid-cols-1 items-center gap-8 py-[clamp(2.5rem,6vw,5rem)] md:gap-10 lg:grid-cols-2 lg:gap-12">
-        <motion.div className="min-w-0" initial="hidden" animate="show" variants={fadeUp}>
-          <div className="flex items-center gap-3">
+        <motion.div className="min-w-0" initial="hidden" animate="show" variants={container}>
+          <motion.div className="flex items-center gap-3" variants={item}>
             <picture>
               <source srcSet={profile.photo.webp} type="image/webp" />
-              <img
+              <motion.img
                 src={profile.photo.png}
                 alt={profile.photo.alt}
                 width={64}
                 height={64}
                 className="size-14 shrink-0 rounded-full border-2 border-white/50 object-cover object-top sm:size-16"
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : {
+                        boxShadow: [
+                          '0 0 0 0 rgba(52, 211, 153, 0)',
+                          '0 0 0 6px rgba(52, 211, 153, 0.35)',
+                          '0 0 0 0 rgba(52, 211, 153, 0)',
+                        ],
+                      }
+                }
+                transition={{ duration: 1.4, delay: 0.4, ease: 'easeOut' }}
               />
             </picture>
             <p className="text-sm font-semibold text-emerald-300 drop-shadow-sm">
               {profile.identity}
             </p>
-          </div>
+          </motion.div>
 
-          <h1
+          <motion.h1
             id="hero-heading"
+            variants={item}
             className="font-display mt-5 text-[clamp(2rem,6vw,4rem)] font-semibold leading-[1.08] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] break-words"
           >
             {hero.heading}
-          </h1>
+          </motion.h1>
 
-          <p className="mt-3 text-base font-medium text-white sm:text-lg md:text-xl">
+          <motion.p
+            variants={item}
+            className="mt-3 text-base font-medium text-white sm:text-lg md:text-xl"
+          >
             {hero.subtitle}
-          </p>
-          <p className="mt-1 text-sm font-semibold text-emerald-300 sm:text-base">
+          </motion.p>
+          <motion.p
+            variants={item}
+            className="mt-1 text-sm font-semibold text-emerald-300 sm:text-base"
+          >
             {hero.affiliation}
-          </p>
+          </motion.p>
 
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/95 sm:text-base">
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/95 sm:text-base"
+          >
             {hero.statement}
-          </p>
+          </motion.p>
 
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Focus areas">
+          <motion.ul
+            className="mt-6 flex flex-wrap gap-2"
+            aria-label="Focus areas"
+            variants={staggerContainer(reduceMotion, 0.05, 0)}
+          >
             {hero.tags.map((tag) => (
-              <li
+              <motion.li
                 key={tag}
+                variants={item}
                 className="border border-white/30 bg-black/35 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm sm:text-sm"
               >
                 {tag}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
+          <motion.div
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+            variants={item}
+          >
+            <motion.a
               href={hero.primaryCta.href}
+              initial={reduceMotion ? false : { scale: 0.98 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : 0.55 }}
               className="inline-flex w-full items-center justify-center gap-2 bg-gradient-to-r from-[var(--color-accent)] to-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 transition-opacity hover:opacity-90 sm:w-auto"
             >
               {hero.primaryCta.label}
               <ArrowRight className="size-4 shrink-0" aria-hidden />
-            </a>
+            </motion.a>
             <a
               href={hero.secondaryCta.href}
               download={hero.secondaryCta.download || undefined}
@@ -140,14 +172,14 @@ export default function Hero() {
               LinkedIn
               <ExternalLink className="size-4 shrink-0" aria-hidden />
             </a>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
           className="min-w-0 w-full"
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.12 }}
+          initial={{ opacity: 0, x: reduceMotion ? 0 : 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.15 }}
         >
           <ScientificVisual />
         </motion.div>

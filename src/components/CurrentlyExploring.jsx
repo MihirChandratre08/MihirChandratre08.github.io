@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { currentlyExploring } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function CurrentlyExploring() {
   const reduceMotion = useReducedMotion()
@@ -32,9 +33,12 @@ export default function CurrentlyExploring() {
         </motion.div>
 
         <ol className="relative mx-auto mt-12 max-w-lg">
-          {/* Center spine */}
-          <div
-            className="pointer-events-none absolute bottom-4 left-1/2 top-4 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-soft)] to-transparent"
+          <motion.div
+            className="pointer-events-none absolute bottom-4 left-1/2 top-4 w-px origin-top -translate-x-1/2 bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-accent-soft)] to-transparent"
+            initial={{ scaleY: reduceMotion ? 1 : 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: reduceMotion ? 0 : 0.8, ease: 'easeOut' }}
             aria-hidden
           />
 
@@ -46,7 +50,7 @@ export default function CurrentlyExploring() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.35,
-                delay: reduceMotion ? 0 : index * 0.05,
+                delay: stagger(reduceMotion, index, 0.07),
               }}
               className="relative flex flex-col items-center pb-8 last:pb-0"
             >
@@ -60,9 +64,23 @@ export default function CurrentlyExploring() {
               </div>
 
               {index < currentlyExploring.length - 1 ? (
-                <span
+                <motion.span
                   className="relative z-[1] mt-3 flex size-7 items-center justify-center rounded-full border border-[var(--color-accent)] bg-[var(--color-bg)] text-[var(--color-accent)]"
                   aria-hidden
+                  initial={false}
+                  whileInView={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          boxShadow: [
+                            '0 0 0 0 rgba(52,211,153,0)',
+                            '0 0 0 6px rgba(52,211,153,0.25)',
+                            '0 0 0 0 rgba(52,211,153,0)',
+                          ],
+                        }
+                  }
+                  viewport={{ once: true, amount: 0.8 }}
+                  transition={{ duration: 0.9, delay: stagger(reduceMotion, index, 0.07) + 0.2 }}
                 >
                   <svg viewBox="0 0 16 16" className="size-3.5" fill="none">
                     <path
@@ -73,7 +91,7 @@ export default function CurrentlyExploring() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </span>
+                </motion.span>
               ) : null}
             </motion.li>
           ))}

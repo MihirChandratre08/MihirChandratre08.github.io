@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ExternalLink, FileDown, Mail, Phone, MapPin } from 'lucide-react'
 import { contact, profile, social } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function Contact() {
   const reduceMotion = useReducedMotion()
@@ -30,30 +31,52 @@ export default function Contact() {
           <p className="mt-4 max-w-xl text-[var(--color-muted)] leading-relaxed">{contact.copy}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={profile.emailHref}
-              className="inline-flex w-full items-center justify-center gap-2 bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-auto"
-            >
-              <Mail className="size-4" aria-hidden />
-              Email Me
-            </a>
-            <a
-              href={social.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 border border-[var(--color-border)] bg-[var(--color-bg)] px-5 py-3 text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] sm:w-auto"
-            >
-              LinkedIn
-              <ExternalLink className="size-4" aria-hidden />
-            </a>
-            <a
-              href={profile.cvPath}
-              download
-              className="inline-flex w-full items-center justify-center gap-2 border border-[var(--color-border)] bg-[var(--color-bg)] px-5 py-3 text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] sm:w-auto"
-            >
-              <FileDown className="size-4" aria-hidden />
-              Download CV
-            </a>
+            {[
+              {
+                href: profile.emailHref,
+                label: 'Email Me',
+                icon: Mail,
+                primary: true,
+              },
+              {
+                href: social.linkedin,
+                label: 'LinkedIn',
+                icon: ExternalLink,
+                external: true,
+              },
+              {
+                href: profile.cvPath,
+                label: 'Download CV',
+                icon: FileDown,
+                download: true,
+              },
+            ].map((cta, index) => {
+              const Icon = cta.icon
+              return (
+                <motion.a
+                  key={cta.label}
+                  href={cta.href}
+                  target={cta.external ? '_blank' : undefined}
+                  rel={cta.external ? 'noreferrer' : undefined}
+                  download={cta.download || undefined}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.35,
+                    delay: stagger(reduceMotion, index, 0.06),
+                  }}
+                  className={
+                    cta.primary
+                      ? 'inline-flex w-full items-center justify-center gap-2 bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-auto'
+                      : 'inline-flex w-full items-center justify-center gap-2 border border-[var(--color-border)] bg-[var(--color-bg)] px-5 py-3 text-sm font-medium text-[var(--color-text)] hover:border-[var(--color-accent)] sm:w-auto'
+                  }
+                >
+                  <Icon className="size-4" aria-hidden />
+                  {cta.label}
+                </motion.a>
+              )
+            })}
           </div>
         </motion.div>
 
@@ -61,7 +84,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: reduceMotion ? 0 : 0.45, delay: reduceMotion ? 0 : 0.06 }}
+          transition={{ duration: reduceMotion ? 0 : 0.45, delay: reduceMotion ? 0 : 0.12 }}
           className="border border-[var(--color-border)] bg-[var(--color-bg)] p-6 sm:p-7"
         >
           <ul className="space-y-5">

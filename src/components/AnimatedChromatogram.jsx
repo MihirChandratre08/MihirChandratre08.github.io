@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useReducedMotion } from 'framer-motion'
+import { useInView, useReducedMotion } from 'framer-motion'
 
 /** HPLC chromatogram line only — headline lives in the parent card. */
 export default function AnimatedChromatogram({
@@ -9,6 +9,8 @@ export default function AnimatedChromatogram({
 }) {
   const reduceMotion = useReducedMotion()
   const pathRef = useRef(null)
+  const rootRef = useRef(null)
+  const inView = useInView(rootRef, { once: true, amount: 0.35 })
   const [length, setLength] = useState(0)
   const [drawn, setDrawn] = useState(!animate || !!reduceMotion)
 
@@ -18,21 +20,24 @@ export default function AnimatedChromatogram({
   useEffect(() => {
     const path = pathRef.current
     if (!path) return
-    const total = path.getTotalLength()
-    setLength(total)
+    setLength(path.getTotalLength())
+  }, [linePath])
 
+  useEffect(() => {
     if (!animate || reduceMotion) {
       setDrawn(true)
       return undefined
     }
+    if (!inView || !length) return undefined
 
     setDrawn(false)
     const frame = requestAnimationFrame(() => setDrawn(true))
     return () => cancelAnimationFrame(frame)
-  }, [animate, reduceMotion, linePath])
+  }, [animate, reduceMotion, inView, length])
 
   return (
     <svg
+      ref={rootRef}
       viewBox="0 0 440 190"
       className={`h-auto w-full max-w-full ${className}`}
       role="img"
@@ -41,7 +46,6 @@ export default function AnimatedChromatogram({
     >
       <title>{title}</title>
 
-      {/* Axes — no tick labels */}
       <line x1="36" y1="24" x2="36" y2="168" stroke="#94a3b8" strokeWidth="1.2" />
       <line x1="36" y1="168" x2="410" y2="168" stroke="#94a3b8" strokeWidth="1.2" />
 

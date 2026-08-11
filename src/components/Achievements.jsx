@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { achievements } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function Achievements() {
   const reduceMotion = useReducedMotion()
@@ -34,11 +35,22 @@ export default function Achievements() {
             <motion.article
               key={item.title}
               initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                boxShadow: reduceMotion
+                  ? '0 0 0 rgba(52,211,153,0)'
+                  : [
+                      '0 0 0 rgba(52,211,153,0)',
+                      '0 0 28px rgba(52,211,153,0.22)',
+                      '0 0 0 rgba(52,211,153,0)',
+                    ],
+              }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{
-                duration: reduceMotion ? 0 : 0.4,
-                delay: reduceMotion ? 0 : index * 0.06,
+                duration: reduceMotion ? 0 : 0.7,
+                delay: stagger(reduceMotion, index, 0.08),
+                boxShadow: { duration: reduceMotion ? 0 : 1.2, delay: stagger(reduceMotion, index, 0.08) },
               }}
               className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
             >

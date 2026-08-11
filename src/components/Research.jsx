@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { projects } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 import ResearchDetailModal from './ResearchDetailModal'
 import {
   BsaNanoparticleDiagram,
@@ -80,15 +81,21 @@ export default function Research() {
               >
                 {projects.featured.cta}
                 <ArrowRight
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                  className="size-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden
                 />
               </button>
             </div>
 
-            <div className="flex min-w-0 items-center theme-diagram p-4 sm:p-6">
+            <motion.div
+              className="flex min-w-0 items-center theme-diagram p-4 sm:p-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : 0.18 }}
+            >
               <BsaNanoparticleDiagram className="w-full" />
-            </div>
+            </motion.div>
           </div>
         </motion.article>
 
@@ -126,7 +133,7 @@ export default function Research() {
             initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: reduceMotion ? 0 : 0.4, delay: reduceMotion ? 0 : 0.05 }}
+            transition={{ duration: reduceMotion ? 0 : 0.4, delay: stagger(reduceMotion, 1) }}
             className="min-w-0 border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-[transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)] sm:p-7"
           >
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-accent)]">

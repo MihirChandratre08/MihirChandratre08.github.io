@@ -64,10 +64,13 @@ export default function Publication() {
             href={publication.doiUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="group mt-8 inline-flex items-center gap-2 bg-[var(--color-accent)] px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             View Publication
-            <ExternalLink className="size-4" aria-hidden />
+            <ExternalLink
+              className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden
+            />
           </a>
         </motion.article>
       </div>

@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { earlierEducation, education } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function Education() {
   const reduceMotion = useReducedMotion()
@@ -42,7 +43,7 @@ export default function Education() {
               viewport={{ once: true, amount: 0.35 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.4,
-                delay: reduceMotion ? 0 : index * 0.05,
+                delay: stagger(reduceMotion, index),
               }}
               className="grid gap-3 border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:grid-cols-[140px_1fr_auto] sm:items-start sm:gap-6 sm:p-6"
             >
@@ -70,26 +71,36 @@ export default function Education() {
           >
             Earlier Education (SSC / HSC)
             <ChevronDown
-              className={`size-4 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+              className={`size-4 shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
               aria-hidden
             />
           </button>
-          {open ? (
-            <div id={panelId} className="border-t border-[var(--color-border)] px-5 py-4">
-              <ul className="space-y-4">
-                {earlierEducation.map((item) => (
-                  <li key={item.degree} className="grid gap-1 sm:grid-cols-[120px_1fr_auto]">
-                    <p className="text-sm text-[var(--color-accent)]">{item.period}</p>
-                    <div>
-                      <p className="font-medium text-[var(--color-text)]">{item.degree}</p>
-                      <p className="text-sm text-[var(--color-muted)]">{item.institute}</p>
-                    </div>
-                    <p className="text-sm text-[var(--color-muted)]">{item.result}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+          <AnimatePresence initial={false}>
+            {open ? (
+              <motion.div
+                id={panelId}
+                key="earlier-edu"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: 'easeOut' }}
+                className="overflow-hidden border-t border-[var(--color-border)]"
+              >
+                <ul className="space-y-4 px-5 py-4">
+                  {earlierEducation.map((item) => (
+                    <li key={item.degree} className="grid gap-1 sm:grid-cols-[120px_1fr_auto]">
+                      <p className="text-sm text-[var(--color-accent)]">{item.period}</p>
+                      <div>
+                        <p className="font-medium text-[var(--color-text)]">{item.degree}</p>
+                        <p className="text-sm text-[var(--color-muted)]">{item.institute}</p>
+                      </div>
+                      <p className="text-sm text-[var(--color-muted)]">{item.result}</p>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
       </div>
     </section>

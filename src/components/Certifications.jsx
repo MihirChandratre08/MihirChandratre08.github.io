@@ -1,9 +1,37 @@
+import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Award } from 'lucide-react'
 import { certifications } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function Certifications() {
   const reduceMotion = useReducedMotion()
+  const scrollerRef = useRef(null)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (reduceMotion) return undefined
+    const el = scrollerRef.current
+    if (!el) return undefined
+
+    let frame = 0
+    let last = performance.now()
+
+    const tick = (now) => {
+      const dt = now - last
+      last = now
+      if (!paused && el.scrollWidth > el.clientWidth) {
+        el.scrollLeft += dt * 0.035
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+          el.scrollLeft = 0
+        }
+      }
+      frame = requestAnimationFrame(tick)
+    }
+
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [paused, reduceMotion])
 
   return (
     <section
@@ -30,9 +58,15 @@ export default function Certifications() {
       </div>
 
       <div
+        ref={scrollerRef}
         className="mt-8 overflow-x-auto pb-2 [scrollbar-width:thin]"
         tabIndex={0}
         aria-label="Certification cards, scroll horizontally"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        onPointerDown={() => setPaused(true)}
       >
         <ul className="section-shell flex w-max snap-x snap-mandatory gap-4 pr-4">
           {certifications.map((cert, index) => (
@@ -43,7 +77,7 @@ export default function Certifications() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{
                 duration: reduceMotion ? 0 : 0.35,
-                delay: reduceMotion ? 0 : index * 0.05,
+                delay: stagger(reduceMotion, index),
               }}
               className="flex w-[260px] shrink-0 snap-start flex-col justify-between border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:w-[300px]"
             >

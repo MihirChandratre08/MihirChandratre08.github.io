@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { FlaskConical, ScanSearch, Dna } from 'lucide-react'
 import { analyticalSkills, computationalTools, regulatory } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 const cardIcons = [FlaskConical, ScanSearch, Dna]
 
@@ -42,7 +43,7 @@ export default function Expertise() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: reduceMotion ? 0 : 0.4,
-                  delay: reduceMotion ? 0 : index * 0.06,
+                  delay: stagger(reduceMotion, index, 0.06),
                 }}
                 className="theme-card p-6 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]"
               >
@@ -77,23 +78,37 @@ export default function Expertise() {
             {regulatory.heading}
           </h3>
           <div className="mt-6 flex flex-wrap gap-2">
-            {regulatory.guidelines.map((item) => (
-              <span
+            {regulatory.guidelines.map((item, index) => (
+              <motion.span
                 key={item}
+                initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.3,
+                  delay: stagger(reduceMotion, index, 0.04),
+                }}
                 className="border border-[var(--color-text)] bg-[var(--color-accent)] px-3 py-1.5 text-sm font-medium text-[var(--color-deep)]"
               >
                 {item}
-              </span>
+              </motion.span>
             ))}
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
-            {regulatory.practices.map((item) => (
-              <span
+            {regulatory.practices.map((item, index) => (
+              <motion.span
                 key={item}
+                initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.3,
+                  delay: stagger(reduceMotion, index + regulatory.guidelines.length, 0.04),
+                }}
                 className="border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-muted)]"
               >
                 {item}
-              </span>
+              </motion.span>
             ))}
           </div>
         </motion.div>
@@ -113,22 +128,50 @@ export default function Expertise() {
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            {computationalTools.groups.map((group) => (
-              <div key={group.title} className="border-l border-[var(--color-accent)] pl-4">
+            {computationalTools.groups.map((group, groupIndex) => (
+              <motion.div
+                key={group.title}
+                initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.4,
+                  delay: stagger(reduceMotion, groupIndex, 0.08),
+                }}
+                className="relative border-l border-transparent pl-4"
+              >
+                <motion.span
+                  className="absolute bottom-0 left-0 top-0 w-px origin-top bg-[var(--color-accent)]"
+                  initial={{ scaleY: reduceMotion ? 1 : 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.5,
+                    delay: stagger(reduceMotion, groupIndex, 0.08),
+                  }}
+                  aria-hidden
+                />
                 <h4 className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--color-text)]">
                   {group.title}
                 </h4>
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {group.tools.map((tool) => (
-                    <li
+                  {group.tools.map((tool, toolIndex) => (
+                    <motion.li
                       key={tool}
+                      initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={{
+                        duration: reduceMotion ? 0 : 0.3,
+                        delay: stagger(reduceMotion, groupIndex * 4 + toolIndex, 0.03),
+                      }}
                       className="bg-[var(--color-accent-soft)] px-2.5 py-1 text-sm text-[var(--color-text)]"
                     >
                       {tool}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { about } from '../data/portfolio'
+import { stagger } from '../lib/motion'
 
 export default function About() {
   const reduceMotion = useReducedMotion()
@@ -25,7 +26,13 @@ export default function About() {
             >
               {about.heading}
             </h2>
-            <div className="mt-5 h-1 w-16 bg-gradient-to-r from-[var(--color-accent-deep)] to-[var(--color-accent)]" />
+            <motion.div
+              className="mt-5 h-1 origin-left bg-gradient-to-r from-[var(--color-accent-deep)] to-[var(--color-accent)]"
+              initial={{ scaleX: reduceMotion ? 1 : 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.8 }}
+              transition={{ duration: reduceMotion ? 0 : 0.55, ease: 'easeOut', delay: reduceMotion ? 0 : 0.15 }}
+            />
           </motion.div>
 
           <div className="space-y-5">
@@ -37,7 +44,7 @@ export default function About() {
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{
                   duration: reduceMotion ? 0 : 0.4,
-                  delay: reduceMotion ? 0 : index * 0.06,
+                  delay: stagger(reduceMotion, index, 0.06),
                 }}
                 className="max-w-2xl text-base leading-relaxed text-[var(--color-text)]/85"
               >
