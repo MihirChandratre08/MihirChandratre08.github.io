@@ -7,7 +7,7 @@ export default function Achievements() {
   return (
     <section
       id={achievements.id}
-      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-accent-soft)_35%,var(--color-bg))]"
+      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] theme-band-soft"
       aria-labelledby="achievements-heading"
     >
       <div className="section-shell">

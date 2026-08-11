@@ -80,7 +80,7 @@ export default function Expertise() {
             {regulatory.guidelines.map((item) => (
               <span
                 key={item}
-                className="border border-[var(--color-text)] bg-[var(--color-text)] px-3 py-1.5 text-sm font-medium text-[var(--color-bg)]"
+                className="border border-[var(--color-text)] bg-[var(--color-accent)] px-3 py-1.5 text-sm font-medium text-[var(--color-deep)]"
               >
                 {item}
               </span>

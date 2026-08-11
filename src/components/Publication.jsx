@@ -8,7 +8,7 @@ export default function Publication() {
   return (
     <section
       id={publication.id}
-      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[var(--color-surface)]"
+      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[var(--color-graphite)]"
       aria-labelledby="publication-heading"
     >
       <div className="section-shell">

@@ -6,7 +6,7 @@ export default function ResearchInterests() {
 
   return (
     <section
-      className="section-pad border-t border-[var(--color-border)] bg-[var(--color-surface)]"
+      className="section-pad border-t border-[var(--color-border)] bg-[var(--color-graphite)]"
       aria-labelledby="interests-heading"
     >
       <div className="section-shell">

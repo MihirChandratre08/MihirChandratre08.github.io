@@ -7,7 +7,7 @@ export default function Stats() {
   return (
     <section
       aria-label="Key credentials"
-      className="border-b border-[var(--color-border)] bg-[var(--color-surface)]"
+      className="border-b border-[var(--color-border)] bg-[var(--color-graphite)]"
     >
       <div className="section-shell grid grid-cols-2 gap-px bg-[var(--color-border)] md:grid-cols-4">
         {stats.map((stat, index) => (

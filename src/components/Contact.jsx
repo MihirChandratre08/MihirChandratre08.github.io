@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <section
       id={contact.id}
-      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[var(--color-surface)]"
+      className="section-pad scroll-mt-[var(--spacing-nav)] border-t border-[var(--color-border)] bg-[var(--color-graphite)]"
       aria-labelledby="contact-heading"
     >
       <div className="section-shell grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">

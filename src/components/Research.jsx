@@ -86,7 +86,7 @@ export default function Research() {
               </button>
             </div>
 
-            <div className="flex min-w-0 items-center bg-[color-mix(in_srgb,var(--color-accent-soft)_45%,var(--color-surface))] p-4 sm:p-6">
+            <div className="flex min-w-0 items-center theme-diagram p-4 sm:p-6">
               <BsaNanoparticleDiagram className="w-full" />
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function Research() {
               {rpHplc.title}
             </h3>
             <p className="mt-3 text-[var(--color-muted)]">{rpHplc.description}</p>
-            <div className="mt-5 min-w-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)] p-2 sm:p-3">
+            <div className="mt-5 min-w-0 overflow-hidden theme-diagram p-2 sm:p-3">
               <ChromatogramDiagram className="w-full" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-2">
@@ -136,7 +136,7 @@ export default function Research() {
               {polyherbal.title}
             </h3>
             <p className="mt-3 text-[var(--color-muted)]">{polyherbal.description}</p>
-            <div className="mt-5 min-w-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)] p-2">
+            <div className="mt-5 min-w-0 overflow-hidden theme-diagram p-2">
               <FacewashFlowDiagram className="w-full" />
             </div>
             <ul className="mt-5 flex flex-wrap gap-2">

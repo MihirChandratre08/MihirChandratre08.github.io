@@ -6,7 +6,7 @@ export default function Timeline() {
 
   return (
     <section
-      className="section-pad border-t border-[var(--color-border)] bg-[var(--color-surface)]"
+      className="section-pad border-t border-[var(--color-border)] bg-[var(--color-graphite)]"
       aria-labelledby="timeline-heading"
     >
       <div className="section-shell">
@@ -67,7 +67,7 @@ export default function Timeline() {
                   }}
                   className="relative pt-2"
                 >
-                  <span className="absolute left-0 top-[30px] size-2.5 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-surface)]" />
+                  <span className="absolute left-0 top-[30px] size-2.5 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-graphite)]" />
                   <p className="text-sm font-semibold text-[var(--color-accent)]">{item.year}</p>
                   <h3 className="mt-8 text-sm font-medium leading-snug text-[var(--color-text)]">
                     {item.title}

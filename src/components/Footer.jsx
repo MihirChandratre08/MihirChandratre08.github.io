@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+    <footer className="border-t border-[var(--color-border)] bg-[#070d0c]">
       <div className="section-shell flex flex-col gap-6 py-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-display text-lg font-semibold tracking-[0.06em] text-[var(--color-text)]">

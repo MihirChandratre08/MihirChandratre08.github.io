@@ -108,7 +108,7 @@ export default function ResearchDetailModal({ open, onClose }) {
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8">
-              <BsaNanoparticleDiagram className="mb-8 w-full border border-[var(--color-border)] bg-[var(--color-surface)]" />
+              <BsaNanoparticleDiagram className="mb-8 w-full theme-diagram" />
 
               <ol className="space-y-6">
                 {researchDetailSections.map((section) => (
