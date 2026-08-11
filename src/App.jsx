@@ -22,7 +22,7 @@ export default function App() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <div className="relative z-[1] bg-[var(--color-bg)] text-[var(--color-text)] shadow-[0_-16px_40px_rgba(12,22,20,0.18)]">
+        <div className="relative z-[1] bg-gradient-to-b from-[#cfe9df] via-[#dceee6] to-[#c8e4d8] text-[var(--color-text)] shadow-[0_-16px_40px_rgba(12,22,20,0.22)]">
           <Stats />
           <About />
           <Expertise />
